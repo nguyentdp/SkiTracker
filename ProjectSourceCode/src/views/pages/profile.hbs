@@ -1,0 +1,49 @@
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('/img/mountain1.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+        }
+        #content {
+            padding: 30px;
+            margin: 100px auto;
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.8); /* Add a semi-transparent white background to make text readable */
+            text-align: center;
+        }
+    </style>
+    
+<element id=content>
+    <h1>Your Profile</h1><br>
+    <table border="1" style="margin-left: 50px; margin-right: 50px;">
+        <tr style="border-bottom: solid 0.25px; border-top: solid 0.25px;">
+            <th>Email</th>
+            <td>{{email}}</td>
+        </tr>
+        <tr style="border-bottom: solid 0.25px; border-top: solid 0.25px;">
+            <th>Username</th>
+            <td>{{username}}</td>
+        </tr>
+        <tr style="border-bottom: solid 0.25px; border-top: solid 0.25px;">
+            <th>Password</th>
+            <td>{{password}}</td>
+        </tr>
+    </table><br><br><br>
+    <div class="content">
+        <h2>Edit your information</h2>
+        <form action="/profile" method="POST">
+<!--             <label for="username">Username</label><br>
+            <input type="username" id="username" name="username" required><br><br> -->
+            <label for="email">Email</label><br>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="password">Password</label><br>
+            <input type="password" id="password" name="password" oninput="check()" required><br><br>
+            <label for="password_confirm">Confirm Password</label><br>
+            <input type="password" id="password_confirm" name="password_confirm" oninput="check()" required><br><br>
+            <button type="submit">Update</button>
+        </form>
+    </div>
+</element>

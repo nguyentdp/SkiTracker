@@ -1,0 +1,154 @@
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-image: url('/img/mountain1.jpg');
+        background-size: cover;
+        background-attachment: fixed;
+        font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+    #content {
+        padding: 30px;
+        margin: 100px auto;
+        max-width: 1000px;
+        background-color: rgba(255, 255, 255, 0.5); /* Add a semi-transparent white background to make text readable */
+        text-align: center;
+    }
+
+    .top3main {
+        border-color: black;
+        border-style: solid;
+        border-width: 3px;
+    }
+    .lb_title {
+        text-align: center;
+        border-style: solid;
+        border-width: 0px;
+        border-color: black ;
+    }
+    .leaderboard {
+        display: flex;
+        justify-content: space-around;
+        padding-bottom: 40px;
+        padding-top: 40px;
+        width: 600px
+    }
+    .leaderboard-item {
+        text-align: center;
+        width: 150px;
+        background-color: #f0f0f0;
+        padding: 20px;
+        border-radius: 10px;
+        border-color: black;
+        border-style:solid;
+        border-width: 2px;
+        position: relative; /* Add relative positioning */
+    }
+    .gold {
+        background-color:  #CFB53B;
+        z-index: 3; /* Ensure gold is on top */
+        margin-top: 0px;
+    }
+    .silver {
+        background-color: lightgrey;
+        z-index: 2;
+        margin-top: 40px; /* Adjust position */
+    }
+    .bronze {
+        background-color: #bd7d3e;
+        z-index: 1;
+        margin-top: 80px; /* Adjust position */
+    }
+    * {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        width: 250px;
+        padding: 0 10px;
+        
+    }
+
+    /* Remove extra left and right margins, due to padding in columns */
+    .row {
+        display: flex;
+        margin: 0 -5px;
+        padding-top: 40px;
+    }
+
+    /* Clear floats after the columns */
+
+    /* Style the counter cards */
+    .card {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+        padding: 16px;
+        text-align: center;
+        background-color: #f1f1f1;
+        display: flex;
+        left: calc(25%);
+    }
+</style>
+<element id="content">
+<body>
+{{!-- Leaderboard displaying the top 3 users based on days skied --}}
+<div class="top3main">
+<h1 class="lb_title">Top 3 Users</h1>
+    <div class="leaderboard">
+        {{!-- {{#each TopUsers}} --}}
+            {{!-- {{#if @index '===' 0}} --}}
+                <div class="leaderboard-item silver">
+                        <h5>{{u2.username}}</h5>
+                        <p>{{u2.days_skied}}</p>
+                </div>
+
+            {{!-- {{else}}
+                {{#if @index '===' 1}} --}}
+                <div class="leaderboard-item gold">
+                    <h5>{{u1.username}}</h5>
+                    <p>{{u1.days_skied}}</p>
+                </div>
+                {{!-- {{else}} --}}
+                    <div class="leaderboard-item bronze">
+                        <h5>{{u3.username}}</h5>
+                        <p>{{u3.days_skied}}</p>
+                    </div>
+                {{!-- {{/if}}
+            {{/if}}
+        {{/each}} --}}
+    </div>
+</div>
+
+{{!-- Cards displaying averages of users in DB and current logged in user's averages --}}
+<div class="row">
+  <div class="column">
+    <div class="card">
+        <h4>Average Stats</h4><br>
+        <h5>Top Speed </h5>
+        <p1> {{avg_ts.round}} mph</p1><br>
+        <h5>Days Skied</h5>
+        <p1> {{avg_ds.round}}</p1><br>
+        <h5>Favorite Mountain </h5>
+        <p1>{{avg_favmnt.mountain_name}}</p1>
+    </div>
+    
+  </div>
+  <div class="column">
+    <div class="card">
+        <h4>{{username}}</h4><br>
+        {{#if user_ts.max}}
+        <h5>Top Speed </h5>
+        <p1>{{user_ts.max}}</p1><br>
+        {{else}}
+        <h5>Top Speed </h5>
+        <p1>No Data</p1><br>
+        {{/if}}
+        <h5>Days Skied</h5>
+        <p1>{{daysSkied.count}}</p1><br>
+        <h5>Favorite Mountain</h5>
+        <p1> {{user_favmnt.mountain_name}}</p1><br>
+    </div>
+  </div>
+</div>
+</body>
+</element>
